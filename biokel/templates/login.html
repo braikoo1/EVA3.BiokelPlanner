@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/AdminLTE.min.css' %}">
+</head>
+
+<body class="login-page">
+
+<div class="login-box">
+  <div class="login-logo">
+    <b>Biokel</b> Planner
+  </div>
+
+  <div class="login-box-body">
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <input name="username" class="form-control my-2" placeholder="Usuario">
+      <input name="password" class="form-control my-2" type="password" placeholder="Contraseña">
+      <button class="btn btn-success btn-block">Entrar</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

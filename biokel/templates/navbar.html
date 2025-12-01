@@ -1,0 +1,29 @@
+<header class="main-header">
+
+  <a href="/" class="logo">
+    <span class="logo-mini"><b>B</b>K</span>
+    <span class="logo-lg"><b>Biokel</b> Planner</span>
+  </a>
+
+  <nav class="navbar navbar-static-top" role="navigation">
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#">
+            <i class="fa fa-user"></i> {{ request.user.username }}
+          </a>
+        </li>
+        <li>
+          <a href="/logout/">
+            <i class="fa fa-sign-out"></i> Salir
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</header>

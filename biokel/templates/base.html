@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Biokel Planner</title>
+
+  <link rel="stylesheet" href="{% static 'adminlte/bootstrap/dist/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'adminlte/plugins/font-awesome/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/AdminLTE.min.css' %}">
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/skins/skin-green.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/biokel.css' %}">
+</head>
+
+<body class="hold-transition skin-green sidebar-mini">
+
+<div class="wrapper">
+
+  {% include 'navbar.html' %}
+  {% include 'sidebar.html' %}
+
+  <div class="content-wrapper">
+      <section class="content">
+          {% block contenido %}{% endblock %}
+      </section>
+  </div>
+
+  <aside class="inventory-panel">
+      <h4><b>Inventario</b></h4>
+      {% for item in inventario_panel %}
+          <div class="inventory-item">
+              {{ item.nombre }}: {{ item.cantidad }} {{ item.unidad }}
+          </div>
+      {% empty %}
+          <p>No hay ítems en el inventario.</p>
+      {% endfor %}
+  </aside>
+
+</div>
+
+<script src="{% static 'adminlte/plugins/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'adminlte/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'adminlte/dist/js/adminlte.min.js' %}"></script>
+
+</body>
+</html>

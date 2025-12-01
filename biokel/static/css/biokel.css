@@ -1,0 +1,34 @@
+.inventory-panel {
+    width: 260px;
+    background: #e0eee8;
+    position: fixed;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding: 15px;
+    border-left: 1px solid #b9d7c8;
+}
+
+.content-wrapper {
+    margin-right: 260px;
+    background: #edf1f4;
+}
+
+html, body {
+    height: 100%;
+    background: #edf1f4 !important;
+}
+
+.wrapper {
+    min-height: 100% !important;
+    background: #edf1f4 !important;
+}ddasdasd
+
+.inventory-item {
+    background: #c7dcd1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
