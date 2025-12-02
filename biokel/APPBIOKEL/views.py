@@ -18,7 +18,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect("/")
+            return redirect("inicio")
         else:
             error = "Usuario o contraseña incorrectos"
 
@@ -26,7 +26,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect("/login/")
+    return redirect("/")
 
 @login_required
 def inicio(request):

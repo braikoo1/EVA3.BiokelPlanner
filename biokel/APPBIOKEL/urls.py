@@ -11,6 +11,4 @@ urlpatterns = [
     path('inventario/', inventario, name='inventario'),
     path("registrarse/", registrarse, name="registrarse"),
 
-
-
 ]
