@@ -14,7 +14,12 @@
       <ul class="nav navbar-nav">
         <li>
           <a href="#">
-            <i class="fa fa-user"></i> {{ request.user.username }}
+            {% if request.user.is_superuser %}
+              Admin:
+            {% else %}
+              Usuario:
+            {% endif %}
+            {{ request.user.username }}
           </a>
         </li>
         <li>

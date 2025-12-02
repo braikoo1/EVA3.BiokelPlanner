@@ -25,16 +25,18 @@
       </section>
   </div>
 
-  <aside class="inventory-panel">
-      <h4><b>Inventario</b></h4>
-      {% for item in inventario_panel %}
-          <div class="inventory-item">
-              {{ item.nombre }}: {{ item.cantidad }} {{ item.unidad }}
-          </div>
-      {% empty %}
-          <p>No hay ítems en el inventario.</p>
-      {% endfor %}
-  </aside>
+    {% if request.path != '/inventario/' %}
+    <aside class="inventory-panel">
+        <h4><b>Inventario</b></h4>
+        {% for item in inventario_panel %}
+            <div class="inventory-item">
+                {{ item.tipo|title }}: {{ item.cantidad }} {{ item.unidad }}
+            </div>
+        {% empty %}
+            <p>No hay ítems en el inventario.</p>
+        {% endfor %}
+    </aside>
+    {% endif %}
 
 </div>
 

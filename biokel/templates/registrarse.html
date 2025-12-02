@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Registrarse - Biokel Planner</title>
+
+    <link rel="stylesheet" href="{% static 'adminlte/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminlte/dist/css/AdminLTE.min.css' %}">
+</head>
+<body class="hold-transition login-page">
+
+<div class="login-box">
+    <div class="login-logo">
+        <b>Biokel</b> Planner
+    </div>
+
+    <div class="login-box-body">
+        <p class="login-box-msg">Crear administrador</p>
+
+        {% if mensaje %}
+            <div class="alert alert-info">{{ mensaje }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" name="username" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+
+            <button class="btn btn-success btn-block" style="margin-top: 10px;">
+                Crear administrador
+            </button>
+        </form>
+
+        <div style="margin-top: 10px; text-align: center;">
+            <a href="{% url 'login' %}">Volver al inicio de sesión</a>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'adminlte/plugins/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'adminlte/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

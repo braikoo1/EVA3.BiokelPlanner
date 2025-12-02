@@ -1,12 +1,11 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <title>Login | Biokel Planner</title>
 
-  <link rel="stylesheet" href="{% static 'adminlte/dist/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'adminlte/bootstrap/dist/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'adminlte/dist/css/AdminLTE.min.css' %}">
 </head>
 
@@ -18,18 +17,30 @@
   </div>
 
   <div class="login-box-body">
+    <p class="login-box-msg">Inicia sesión para continuar</p>
+
     {% if error %}
       <p style="color:red;">{{ error }}</p>
     {% endif %}
 
     <form method="POST">
-      {% csrf_token %}
-      <input name="username" class="form-control my-2" placeholder="Usuario">
-      <input name="password" class="form-control my-2" type="password" placeholder="Contraseña">
-      <button class="btn btn-success btn-block">Entrar</button>
-    </form>
-  </div>
+    {% csrf_token %}
+    <input type="text" name="username" class="form-control" placeholder="Usuario" required>
+    <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+
+    <button class="btn btn-success btn-block" style="margin-top: 10px;">
+        Iniciar Sesión
+    </button>
+</form>
+
+<div style="margin-top: 15px;">
+    <a href="{% url 'registrarse' %}" class="btn btn-default btn-block">
+        Registrarse
+    </a>
 </div>
+
+<script src="{% static 'adminlte/plugins/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'adminlte/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
 </body>
 </html>

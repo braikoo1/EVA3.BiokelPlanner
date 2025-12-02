@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block contenido %}
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Metricas del Sistema</h3>
+    </div>
+
+    <div class="box-body">
+
+        <h4>Producción de Huevos</h4>
+        <div class="grafico-container">
+            <canvas id="grafHuevos"></canvas>
+        </div>
+        <hr>
+
+        <h4>Consumo de Raciones</h4>
+        <div class="grafico-container">
+            <canvas id="grafRaciones"></canvas>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const fechasHuevos = JSON.parse('{{ fechas_huevos|safe }}');
+const valoresHuevos = JSON.parse('{{ valores_huevos|safe }}');
+const fechasRaciones = JSON.parse('{{ fechas_raciones|safe }}');
+const valoresRaciones = JSON.parse('{{ valores_raciones|safe }}');
+
+new Chart(document.getElementById('grafHuevos').getContext('2d'), {
+    type: 'line',
+    data: {
+        labels: fechasHuevos,
+        datasets: [{
+            label: 'Huevos',
+            data: valoresHuevos,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 2,
+            fill: false
+        }]
+    }
+});
+
+new Chart(document.getElementById('grafRaciones').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: fechasRaciones,
+        datasets: [{
+            label: 'Kg de alimento',
+            data: valoresRaciones,
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    }
+});
+</script>
+
+{% endblock %}

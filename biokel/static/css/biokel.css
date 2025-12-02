@@ -32,3 +32,12 @@ html, body {
     margin-bottom: 10px;
     font-size: 14px;
 }
+
+.grafico-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.grafico-container canvas {
+    max-height: 260px !important;
+}

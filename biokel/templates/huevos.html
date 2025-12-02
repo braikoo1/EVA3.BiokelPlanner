@@ -1,4 +1,49 @@
 {% extends 'base.html' %}
 {% block contenido %}
-<h3>Dashboard</h3>
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Producción de Huevos</h3>
+    </div>
+
+    <div class="box-body">
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" name="fecha" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>Cantidad de huevos</label>
+                <input type="number" name="cantidad" class="form-control" required>
+            </div>
+
+            <button class="btn btn-success">Registrar</button>
+        </form>
+
+        <hr>
+
+        <h4>Registros</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Huevos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in registros %}
+                <tr>
+                    <td>{{ r.fecha }}</td>
+                    <td>{{ r.cantidad }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
 {% endblock %}

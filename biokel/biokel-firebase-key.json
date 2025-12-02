@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "biokelplanner",
+  "private_key_id": "504c25c3943c93d1bd9f26f034863bc081abdb92",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDJ9ES7L5Anz3ZB\nWOYdVeQSFtLaq4Wetm47NSPWGxEJPVZhLlSxudtcn2whqh+/kgAm9ZlejozAHR+X\nFeURTz37D9WcCbv5y+nI8TQRjXeHBW8+AR8XkYO5uY70IppK/mS/DK5uFxTKuwF9\niy/mvP1CREpjFMmgrf8sjqe01brsUoig147UzZ4brzADa9tVJfwC2HyYEA+Gg3PI\n/i2SEX5Ny8y0Qdt6NXR0PNtzVHjXiTOlS/WE8bN13F9jW/EwG/wJL0eFUoiW+yt4\nAUwh6AUC+917GUxyCSqq1Mz4waYkFj2ymv3xamDbVOKQmJEQIGwCdx0G5gK4GC4E\npq2DIBghAgMBAAECggEAAQlbTHQoKuIkVt3GUZZ6JRMfqi5o8Ul5q51gVZYeOmRJ\nlBZdKivcab9qOkqBnvW4gTqvurXj2E0V90wuGK6F0IryY1qD79ppdOXzCNeHamaf\nXWu7TX9KVCrVBmEClnmziez+XLOK4GcBERRErswfxyYrVRKbXdMizQde6j1SGCoq\ncM6ygflbYmJFlBmxWmaBdya1CS19DbFdtO93yr++dFZvawxspVBJh2AXCBn86bFk\np3WTFZSumIXuzJAApWzftxdO/2Gugpt0sCd9lJeNjX5tKYCW1vPQ6BMj63CaUEl3\n20h3Tt1p3r8a6E6b98g61GKFV8MAlAcBY+5MHqp6YQKBgQD1keSlom0y6KCFaUO5\nhLoZrRwY8xodanz4zq5oQKiCskFRRkTYWa6OJgCpWu0drFCNIAJXyGrBFTN265yB\ne84gGpQSxL8N7GnzlszY4h+HTE9kioDRX8RWl+oZrm7LVPCoauTF+j432C0qsOIm\nQQR3Ub7ORjDZXHp4gIYx7WM+EQKBgQDSiCMX3wyGagUWMtPJFIxUwRqFygssqvmG\nEa0cxPfPsI3OrrPl7kDP68dBE1jKPYoCb2xmuiLsg3TQ4Oynyr1v442I5PhmwQtV\nSW27M4E45ceoFZnWdiJOyDPca+NbguwDoddyB46JvBxHx7oDY11STtkMzTFV22jg\n2YH0VdRpEQKBgAiBeyf5jkq7IAQ+9yeP31pQUq7SjM8EBzwe/I+D3dJZFkYYZv4P\nbSpjSpaTHa9vboLU3v/nYzs43sV5t7wMa8FU6lgUFIII9EqJqKLCglEPZZiX64pV\nBNny/RrSnefRE1ziBvaMimcox7e41Lx6eAsh+7ftWnfM6jkOSpekH1HhAoGASGAo\nwFIbujHEYedDS4NW4uQnvArDYK2+bkqxWoyULMAjYARLMCaB/Xiu3T5LbetOAJxR\nhddDnk9q30wTz3MxQL/XrlIY2ypOPRmrMYn5SJgl1TDn3ARssuy8d3BXjuQpQu5m\nZHsYk10p07tjxTppoJwenfoEleGB4pqjxF2lUiECgYBzCrBBoNgs/MKMJQMFe2vG\nbtZ4Yz5rpIaIFsP8cBCxpkl068wdIvrek1DL9oCw0ChKYbrFe6PQmWk1W/gi5dTJ\n/X3B4mesiGyot4ZfG9mue14d+nTk15HGaYbEvpQX1ybDyn5SyGDXOUFeR0ukohf+\nXdIOSY5vjE4blUPHbS7OIw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@biokelplanner.iam.gserviceaccount.com",
+  "client_id": "107735058736823781413",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40biokelplanner.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
