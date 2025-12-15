@@ -2,61 +2,87 @@
 {% block contenido %}
 
 <div class="box">
-    <div class="box-header with-border">
-        <h3 class="box-title">Metricas del Sistema</h3>
+  <div class="box-header with-border">
+    <h3 class="box-title">Métricas del Sistema</h3>
+  </div>
+
+  <div class="box-body">
+
+    <h4>Producción de Huevos por Día</h4>
+    <div class="grafico-container" style="height: 350px; width: 100%;">
+      <canvas id="grafHuevos"></canvas>
     </div>
-
-    <div class="box-body">
-
-        <h4>Producción de Huevos</h4>
-        <div class="grafico-container">
-            <canvas id="grafHuevos"></canvas>
+    <div style="display: flex; gap: 20px; margin-top: 30px;">
+      <div style="flex: 1;">
+        <h4>Stock de Algas</h4>
+        <div class="grafico-container" style="height: 250px; width: 100%;">
+          <canvas id="grafAlgas"></canvas>
         </div>
-        <hr>
-
-        <h4>Consumo de Raciones</h4>
-        <div class="grafico-container">
-            <canvas id="grafRaciones"></canvas>
+      </div>
+      <div style="flex: 1;">
+        <h4>Stock de Calcio</h4>
+        <div class="grafico-container" style="height: 250px; width: 100%;">
+          <canvas id="grafCalcio"></canvas>
         </div>
-
+      </div>
     </div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
-const fechasHuevos = JSON.parse('{{ fechas_huevos|safe }}');
-const valoresHuevos = JSON.parse('{{ valores_huevos|safe }}');
-const fechasRaciones = JSON.parse('{{ fechas_raciones|safe }}');
-const valoresRaciones = JSON.parse('{{ valores_raciones|safe }}');
+ 
+  const fechasHuevos = JSON.parse('{{ fechas_huevos|safe }}')
+  const valoresHuevos = JSON.parse('{{ valores_huevos|safe }}')
 
-new Chart(document.getElementById('grafHuevos').getContext('2d'), {
+  new Chart(document.getElementById('grafHuevos'), {
     type: 'line',
     data: {
-        labels: fechasHuevos,
-        datasets: [{
-            label: 'Huevos',
-            data: valoresHuevos,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 2,
-            fill: false
-        }]
+      labels: fechasHuevos,
+      datasets: [{
+        label: 'Huevos por día',
+        data: valoresHuevos,
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 2,
+        fill: false
+      }]
     }
-});
+  })
 
-new Chart(document.getElementById('grafRaciones').getContext('2d'), {
-    type: 'bar',
+  const fechasAlgas = JSON.parse('{{ fechas_algas|safe }}')
+  const valoresAlgas = JSON.parse('{{ valores_algas|safe }}')
+
+  new Chart(document.getElementById('grafAlgas'), {
+    type: 'line',
     data: {
-        labels: fechasRaciones,
-        datasets: [{
-            label: 'Kg de alimento',
-            data: valoresRaciones,
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }]
+      labels: fechasAlgas,
+      datasets: [{
+        label: 'Algas (g)',
+        data: valoresAlgas,
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 2,
+        fill: false
+      }]
     }
-});
+  })
+
+ 
+  const fechasCalcio = JSON.parse('{{ fechas_calcio|safe }}')
+  const valoresCalcio = JSON.parse('{{ valores_calcio|safe }}')
+
+  new Chart(document.getElementById('grafCalcio'), {
+    type: 'line',
+    data: {
+      labels: fechasCalcio,
+      datasets: [{
+        label: 'Calcio (g)',
+        data: valoresCalcio,
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 2,
+        fill: false
+      }]
+    }
+  })
 </script>
 
 {% endblock %}

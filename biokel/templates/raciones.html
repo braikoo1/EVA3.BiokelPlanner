@@ -3,60 +3,96 @@
 
 <h3>Planificación de Raciones</h3>
 
-<form method="POST" style="margin-bottom: 25px;">
-    {% csrf_token %}
-    <label>Cantidad de gallinas</label>
-    <input type="number" name="gallinas" class="form-control" required>
-    <button type="submit" class="btn btn-success" style="margin-top: 10px;">Calcular</button>
-</form>
+<div class="row">
+  <div class="col-md-5">
 
-{% if resultados %}
-    <h4>Gallinas ingresadas: <b>{{ resultados.gallinas }}</b></h4>
+    <form method="POST">
+      {% csrf_token %}
 
-    <br>
+      <label>Cantidad de gallinas</label>
+      <input type="number" name="gallinas" class="form-control" required>
 
-    <h4>Semana</h4>
-    <table class="table table-bordered" style="width: 450px;">
-        <tr>
-            <td><b>Algas (g)</b></td>
-            <td style="text-align: right;">{{ resultados.algas_sem }}</td>
-        </tr>
-        <tr>
-            <td><b>Calcio (g)</b></td>
-            <td style="text-align: right;">{{ resultados.calcio_sem }}</td>
-        </tr>
-        <tr>
-            <td><b>Mezcla Total (kg)</b></td>
-            <td style="text-align: right;">{{ resultados.mezcla_sem }}</td>
-        </tr>
-        <tr>
-            <td><b>Mezcla Optimizada (kg)</b></td>
-            <td style="text-align: right;">{{ resultados.mezcla_sem_opt }}</td>
-        </tr>
+      <br>
 
+      <label>Algas por gallina (g/día)</label>
+      <input type="number" name="algas" class="form-control" required>
+
+      <br>
+
+      <label>Calcio por gallina (g/día)</label>
+      <input type="number" name="calcio" class="form-control" required>
+
+      <br>
+
+      <label>Alimento base por gallina (g/día)</label>
+      <input type="number" name="alimento" class="form-control" required>
+
+      <button type="submit" class="btn btn-success" style="margin-top: 15px;">
+        Calcular
+      </button>
+    </form>
+
+  </div>
+
+  <div class="col-md-7">
+
+    {% if resultados %}
+
+    <h4>Gallinas: <b>{{ resultados.gallinas }}</b></h4>
+
+    <h4>Consumo Semanal</h4>
+    <table class="table table-bordered">
+      <tr>
+        <td>Algas (g)</td>
+        <td>{{ resultados.algas_sem }}</td>
+      </tr>
+      <tr>
+        <td>Calcio (g)</td>
+        <td>{{ resultados.calcio_sem }}</td>
+      </tr>
+      <tr>
+        <td>Alimento base (g)</td>
+        <td>{{ resultados.alimento_sem }}</td>
+      </tr>
+      <tr>
+        <td><b>Mezcla total (kg)</b></td>
+        <td><b>{{ resultados.mezcla_sem }}</b></td>
+      </tr>
+      <tr>
+        <td>Mezcla optimizada (kg)</td>
+        <td>{{ resultados.mezcla_sem_opt }}</td>
+      </tr>
     </table>
 
-    <h4>Mes</h4>
-    <table class="table table-bordered" style="width: 450px;">
-        <tr>
-            <td><b>Algas (g)</b></td>
-            <td style="text-align: right;">{{ resultados.algas_mes }}</td>
-        </tr>
-        <tr>
-            <td><b>Calcio (g)</b></td>
-            <td style="text-align: right;">{{ resultados.calcio_mes }}</td>
-        </tr>
-        <tr>
-            <td><b>Mezcla Total (kg)</b></td>
-            <td style="text-align: right;">{{ resultados.mezcla_mes }}</td>
-        </tr>
-        <tr>
-            <td><b>Mezcla Optimizada (kg)</b></td>
-            <td style="text-align: right;">{{ resultados.mezcla_mes_opt }}</td>
-        </tr>
-
+    <h4>Consumo Mensual</h4>
+    <table class="table table-bordered">
+      <tr>
+        <td>Algas (g)</td>
+        <td>{{ resultados.algas_mes }}</td>
+      </tr>
+      <tr>
+        <td>Calcio (g)</td>
+        <td>{{ resultados.calcio_mes }}</td>
+      </tr>
+      <tr>
+        <td>Alimento base (g)</td>
+        <td>{{ resultados.alimento_mes }}</td>
+      </tr>
+      <tr>
+        <td><b>Mezcla total (kg)</b></td>
+        <td><b>{{ resultados.mezcla_mes }}</b></td>
+      </tr>
+      <tr>
+        <td>Mezcla optimizada (kg)</td>
+        <td>{{ resultados.mezcla_mes_opt }}</td>
+      </tr>
     </table>
 
-{% endif %}
+    {% else %}
+    {% endif %}
+
+  </div>
+
+</div>
 
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block contenido %}
+
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">Historial de Inventario</h3>
+  </div>
+
+  <div class="box-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Usuario</th>
+          <th>Tipo</th>
+          <th>Cantidad</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if historial %}
+          {% for item in historial %}
+            <tr>
+              <td>{{ item.fecha }}</td>
+              <td>{{ item.usuario }}</td>
+              <td>{{ item.tipo|capfirst }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td>{{ item.accion }}</td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="5">No hay registros</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

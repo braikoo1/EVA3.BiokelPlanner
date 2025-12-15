@@ -20,29 +20,80 @@
   {% include 'sidebar.html' %}
 
   <div class="content-wrapper">
-      <section class="content">
-          {% block contenido %}{% endblock %}
-      </section>
+    <section class="content">
+      {% block contenido %}{% endblock %}
+    </section>
   </div>
-
-    {% if request.path != '/inventario/' %}
-    <aside class="inventory-panel">
-        <h4><b>Inventario</b></h4>
-        {% for item in inventario_panel %}
-            <div class="inventory-item">
-                {{ item.tipo|title }}: {{ item.cantidad }} {{ item.unidad }}
-            </div>
-        {% empty %}
-            <p>No hay ítems en el inventario.</p>
-        {% endfor %}
-    </aside>
-    {% endif %}
-
+ <aside class="inventory-panel" id="inventory-panel">
+  <h4><b>Inventario</b></h4>
+  <div id="inventory-items">
+    <p>Cargando inventario...</p>
+  </div>
+</aside>
 </div>
 
 <script src="{% static 'adminlte/plugins/jquery/dist/jquery.min.js' %}"></script>
 <script src="{% static 'adminlte/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'adminlte/dist/js/adminlte.min.js' %}"></script>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD9JHWgcypuXFDt8qp4xedicWzpkNgVwA0",
+    authDomain: "biokelplanner.firebaseapp.com",
+    projectId: "biokelplanner",
+    storageBucket: "biokelplanner.firebasestorage.app",
+    messagingSenderId: "582181983484",
+    appId: "1:582181983484:web:32e3ac999d1e1089a5f379"
+  }
+
+  const app = initializeApp(firebaseConfig)
+  const db = getFirestore(app)
+
+  window.db = db
+</script>
+<script>
+  if (window.location.pathname === "/inventario/") {
+    document.addEventListener("DOMContentLoaded", () => {
+      const panel = document.getElementById("inventory-panel")
+      if (panel) panel.style.display = "none"
+    })
+  }
+</script>
+
+<script type="module">
+  import {
+    collection,
+    getDocs,
+    onSnapshot
+  } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"
+
+  const inventoryContainer = document.getElementById("inventory-items")
+
+  function renderInventario(items) {
+    inventoryContainer.innerHTML = ""
+
+    if (items.length === 0) {
+      inventoryContainer.innerHTML = "<p>No hay ítems en el inventario</p>"
+      return
+    }
+
+    items.forEach(item => {
+      const div = document.createElement("div")
+      div.className = "inventory-item"
+      div.innerHTML = `<b>${item.tipo}</b>: ${item.cantidad} ${item.unidad}`
+      inventoryContainer.appendChild(div)
+    })
+  }
+
+  const inventarioRef = collection(window.db, "inventario")
+
+  onSnapshot(inventarioRef, snapshot => {
+    const items = snapshot.docs.map(doc => doc.data())
+    renderInventario(items)
+  })
+</script>
 </body>
 </html>

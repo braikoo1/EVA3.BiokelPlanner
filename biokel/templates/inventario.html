@@ -2,60 +2,79 @@
 {% block contenido %}
 
 <div class="box">
-    <div class="box-header with-border">
-        <h3 class="box-title">Inventario</h3>
-    </div>
+  <div class="box-header with-border">
+    <h3 class="box-title">Inventario</h3>
+  </div>
 
-    <div class="box-body">
+  <div class="box-body">
 
-        <form method="POST">
-            {% csrf_token %}
+    <!-- FORMULARIO PRINCIPAL -->
+    <form method="POST" id="inventario-form">
+      {% csrf_token %}
+      <input type="hidden" name="item_id" id="item_id">
+      <input type="hidden" name="tipo" id="tipo">
+      <input type="hidden" name="accion" id="accion" value="agregar">
 
-            <label><b>Tipo de Insumo:</b></label>
-            <select name="tipo" class="form-control" required>
-                <option value="">Seleccione...</option>
-                <option value="algas">Algas</option>
-                <option value="calcio">Calcio</option>
-            </select>
+      <label><b>Tipo de Insumo:</b></label>
+      <input type="text" class="form-control" id="tipo_display" value="" disabled>
 
-            <br>
+      <br>
 
-            <label><b>Cantidad:</b></label>
-            <input type="number" name="cantidad" class="form-control" required>
+      <label><b>Cantidad:</b></label>
+      <input type="number" name="cantidad" class="form-control" id="cantidad" step="0.01" min="0" required>
 
-            <br>
+      <br>
 
-            <button class="btn btn-success">Agregar</button>
-        </form>
+      <button type="submit" class="btn btn-success">Ejecutar</button>
+    </form>
 
-        <hr>
+    <hr>
 
-        <h4>Ítems en Inventario</h4>
+    <!-- INVENTARIO -->
+    <h4>Ítems en Inventario</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Cantidad</th>
+          <th>Unidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if inventario %}
+          {% for item in inventario %}
+            <tr>
+              <td>{{ item.tipo|capfirst }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td>{{ item.unidad }}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-sm" onclick="cargarFormulario('{{ item.id }}','{{ item.tipo }}','{{ item.cantidad }}','editar')">Editar</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="cargarFormulario('{{ item.id }}','{{ item.tipo }}','{{ item.cantidad }}','agregar')">Agregar</button>
+                <button type="button" class="btn btn-warning btn-sm" onclick="cargarFormulario('{{ item.id }}','{{ item.tipo }}','{{ item.cantidad }}','restar')">Restar</button>
+              </td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="4">No hay productos en el inventario</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Cantidad</th>
-                    <th>Unidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in productos %}
-                <tr>
-                    <td>{{ item.tipo|title }}</td>
-                    <td>{{ item.cantidad }}</td>
-                    <td>{{ item.unidad }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="3">No hay productos en el inventario.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-    </div>
+  </div>
 </div>
+
+<script>
+function cargarFormulario(id, tipo, cantidad, accion) {
+  document.getElementById("item_id").value = id
+  document.getElementById("tipo").value = tipo
+  document.getElementById("tipo_display").value = tipo.charAt(0).toUpperCase() + tipo.slice(1)
+  document.getElementById("cantidad").value = cantidad
+  document.getElementById("accion").value = accion
+  document.getElementById("cantidad").focus()
+}
+</script>
 
 {% endblock %}
