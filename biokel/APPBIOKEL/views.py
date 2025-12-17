@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .firebase import get_db
 from django.http import HttpResponse
@@ -106,7 +106,6 @@ def raciones(request):
 
 
 @login_required
-@user_passes_test(lambda u: u.is_superuser)
 def inventario(request):
     db = get_db()
     inventario_ref = db.collection("inventario")
@@ -172,7 +171,6 @@ def inventario(request):
     })
 
 @login_required
-@user_passes_test(lambda u: u.is_superuser)
 def reportes(request):
     db = get_db()
     historial_ref = db.collection("historial_inventario")
@@ -188,11 +186,11 @@ def reportes(request):
 
 
 @login_required
-@user_passes_test(lambda u: u.is_superuser)
 def huevos(request):
     db = get_db()
     huevos_ref = db.collection("produccion_huevos")
     inventario_ref = db.collection("inventario")
+    historial_ref = db.collection("historial_inventario")
 
     if request.method == "POST":
         fecha = request.POST.get("fecha")
@@ -208,11 +206,13 @@ def huevos(request):
 
             docs = inventario_ref.where("tipo", "==", "huevos").stream()
             encontrado = False
+            cantidad_actual = 0
 
             for doc in docs:
                 data = doc.to_dict()
+                cantidad_actual = data.get("cantidad", 0)
                 inventario_ref.document(doc.id).update({
-                    "cantidad": data["cantidad"] + cantidad
+                    "cantidad": cantidad_actual + cantidad
                 })
                 encontrado = True
                 break
@@ -224,6 +224,16 @@ def huevos(request):
                     "unidad": "u"
                 })
 
+            historial_ref.add({
+                "fecha": fecha,
+                "usuario": request.user.username,
+                "tipo": "huevos",
+                "cantidad": f"+{cantidad}",
+                "accion": "Producción"
+            })
+
+            return redirect("huevos")
+
     registros = []
     for doc in huevos_ref.stream():
         registros.append(doc.to_dict())
@@ -234,7 +244,6 @@ def huevos(request):
 
 
 @login_required
-@user_passes_test(lambda u: u.is_superuser)
 def metricas(request):
     db = get_db()
 

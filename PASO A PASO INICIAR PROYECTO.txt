@@ -1,0 +1,24 @@
+1. Ingresar al repositorio del proyecto en GitHub
+
+2. Presionar el botón Code y seleccionar la opción Download ZIP
+
+3. Descargar el archivo ZIP del repositorio y descomprimirlo en el computador
+
+4. Abrir la carpeta del proyecto descomprimido
+
+5. Instalar las dependencias necesarias para que el proyecto funcione. Para esto, abrir la consola dentro de la carpeta del proyecto y ejecutar los siguientes comandos
+-pip install django
+-pip install firebase-admin
+
+6. Crear un proyecto en Firebase desde la web y crear un Firestore en modo de prueba
+
+7. Generar una cuenta de servicio desde la configuración del proyecto en Firebase y descargar el archivo de credenciales en formato JSON
+Configuracion del proyecto -> Cuentas de Servicio -> SDK de Admin: Python -> Generar Clave
+
+8. Renombrar el archivo descargado como biokelaccountservice.json y colocarlo en la raíz del proyecto, al mismo nivel que manage.py
+
+9. Ejecutar el proyecto utilizando el comando python manage.py runserver
+
+10. Acceder al sistema desde el navegador web mediante la dirección http://127.0.0.1:8000/
+
+11. Crear un usuario desde la opción de registro e iniciar sesión para acceder a las funcionalidades del sistema
