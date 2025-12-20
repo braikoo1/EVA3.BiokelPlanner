@@ -10,22 +10,22 @@
       {% csrf_token %}
 
       <label>Cantidad de gallinas</label>
-      <input type="number" name="gallinas" class="form-control" required>
+      <input type="number" name="gallinas" class="form-control" min="0" required>
 
       <br>
 
       <label>Algas por gallina (g/día)</label>
-      <input type="number" name="algas" class="form-control" required>
+      <input type="number" name="algas" class="form-control" min="0" required>
 
       <br>
 
       <label>Calcio por gallina (g/día)</label>
-      <input type="number" name="calcio" class="form-control" required>
+      <input type="number" name="calcio" class="form-control" min="0" required>
 
       <br>
 
       <label>Alimento base por gallina (g/día)</label>
-      <input type="number" name="alimento" class="form-control" required>
+      <input type="number" name="alimento" class="form-control" min="0" required>
 
       <button type="submit" class="btn btn-success" style="margin-top: 15px;">
         Calcular
