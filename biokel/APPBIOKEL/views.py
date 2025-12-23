@@ -72,39 +72,58 @@ def raciones(request):
 
         mezcla_dia = algas_dia + calcio_dia + alimento_dia
 
-        # semanal
+        # consumo semanal
         algas_sem = algas_dia * 7
         calcio_sem = calcio_dia * 7
         alimento_sem = alimento_dia * 7
         mezcla_sem = mezcla_dia * 7
-        mezcla_sem_opt = mezcla_sem * 0.85
 
-        # mensual
+        # consumo mensual
         algas_mes = algas_dia * 30
         calcio_mes = calcio_dia * 30
         alimento_mes = alimento_dia * 30
         mezcla_mes = mezcla_dia * 30
+
+        # optimización (15% menos)
+        algas_sem_opt = algas_sem * 0.85
+        calcio_sem_opt = calcio_sem * 0.85
+        alimento_sem_opt = alimento_sem * 0.85
+        mezcla_sem_opt = mezcla_sem * 0.85
+
+        algas_mes_opt = algas_mes * 0.85
+        calcio_mes_opt = calcio_mes * 0.85
+        alimento_mes_opt = alimento_mes * 0.85
         mezcla_mes_opt = mezcla_mes * 0.85
 
         resultados = {
             "gallinas": gallinas,
 
-            "algas_sem": algas_sem,
-            "calcio_sem": calcio_sem,
-            "alimento_sem": alimento_sem,
+            # semanal normal
+            "algas_sem": round(algas_sem, 2),
+            "calcio_sem": round(calcio_sem, 2),
+            "alimento_sem": round(alimento_sem, 2),
             "mezcla_sem": round(mezcla_sem / 1000, 2),
+
+            # semanal optimizado
+            "algas_sem_opt": round(algas_sem_opt, 2),
+            "calcio_sem_opt": round(calcio_sem_opt, 2),
+            "alimento_sem_opt": round(alimento_sem_opt, 2),
             "mezcla_sem_opt": round(mezcla_sem_opt / 1000, 2),
 
-            "algas_mes": algas_mes,
-            "calcio_mes": calcio_mes,
-            "alimento_mes": alimento_mes,
+            # mensual normal
+            "algas_mes": round(algas_mes, 2),
+            "calcio_mes": round(calcio_mes, 2),
+            "alimento_mes": round(alimento_mes, 2),
             "mezcla_mes": round(mezcla_mes / 1000, 2),
+
+            # mensual optimizado
+            "algas_mes_opt": round(algas_mes_opt, 2),
+            "calcio_mes_opt": round(calcio_mes_opt, 2),
+            "alimento_mes_opt": round(alimento_mes_opt, 2),
             "mezcla_mes_opt": round(mezcla_mes_opt / 1000, 2),
         }
 
     return render(request, "raciones.html", {"resultados": resultados})
-
-
 @login_required
 def inventario(request):
     db = get_db()

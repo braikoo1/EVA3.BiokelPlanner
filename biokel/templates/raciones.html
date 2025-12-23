@@ -58,9 +58,22 @@
         <td><b>Mezcla total (kg)</b></td>
         <td><b>{{ resultados.mezcla_sem }}</b></td>
       </tr>
+
+      <tr class="table-success">
+        <td><b>Mezcla optimizada (kg)</b></td>
+        <td><b>{{ resultados.mezcla_sem_opt }}</b></td>
+      </tr>
       <tr>
-        <td>Mezcla optimizada (kg)</td>
-        <td>{{ resultados.mezcla_sem_opt }}</td>
+        <td>Algas optimizadas (g)</td>
+        <td>{{ resultados.algas_sem_opt }}</td>
+      </tr>
+      <tr>
+        <td>Calcio optimizado (g)</td>
+        <td>{{ resultados.calcio_sem_opt }}</td>
+      </tr>
+      <tr>
+        <td>Alimento base optimizado (g)</td>
+        <td>{{ resultados.alimento_sem_opt }}</td>
       </tr>
     </table>
 
@@ -82,17 +95,28 @@
         <td><b>Mezcla total (kg)</b></td>
         <td><b>{{ resultados.mezcla_mes }}</b></td>
       </tr>
+
+      <tr class="table-success">
+        <td><b>Mezcla optimizada (kg)</b></td>
+        <td><b>{{ resultados.mezcla_mes_opt }}</b></td>
+      </tr>
       <tr>
-        <td>Mezcla optimizada (kg)</td>
-        <td>{{ resultados.mezcla_mes_opt }}</td>
+        <td>Algas optimizadas (g)</td>
+        <td>{{ resultados.algas_mes_opt }}</td>
+      </tr>
+      <tr>
+        <td>Calcio optimizado (g)</td>
+        <td>{{ resultados.calcio_mes_opt }}</td>
+      </tr>
+      <tr>
+        <td>Alimento base optimizado (g)</td>
+        <td>{{ resultados.alimento_mes_opt }}</td>
       </tr>
     </table>
 
-    {% else %}
     {% endif %}
 
   </div>
-
 </div>
 
 {% endblock %}
